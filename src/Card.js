@@ -6,6 +6,7 @@ function Card(props) {
 
     const [monster, setMonster] = useState([]);
     const [types, setTypes] = useState([]);
+    const [sprites, setSprites] = useState([]);
 
     useEffect(() => {
         fetch(url)
@@ -13,6 +14,7 @@ function Card(props) {
         .then((data) => {
           setMonster(data);
           setTypes(data.types);
+          setSprites(data.sprites);
         })
         .catch((err) => {
           console.log(err.message);
@@ -28,7 +30,6 @@ function Card(props) {
                     <div className="flex flex-row gap-2">
                         {
                             types.map((type) => {
-                                console.log(type)
                                 return(
                                     <div className="px-2 py-1 rounded-md bg-white">
                                         {type.type.name}
@@ -39,7 +40,7 @@ function Card(props) {
                     </div>
                 </div>
                 <div className="flex">
-                    <img className="flex-end" src={ monster.sprites.front_default } alt={ name }></img>
+                    <img className="flex-end" src={ sprites.front_default } alt={ name }></img>
                 </div>
             </div>
         </div>
