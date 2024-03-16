@@ -14,7 +14,7 @@ function Card(props) {
         .then((data) => {
           setMonster(data);
           setTypes(data.types);
-          setSprites(data.sprites);
+          setSprites(data.sprites.other['official-artwork']);
         })
         .catch((err) => {
           console.log(err.message);
@@ -22,7 +22,7 @@ function Card(props) {
       }, []);
 
     return (
-        <div className="w-auto h-auto p-8 bg-green-500 rounded-lg">
+        <div className="w-auto h-auto p-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-lg hover:scale-105">
             <div className="flex flex-row">
                 <div className="flex-grow flex flex-col gap-2">
                     <h2 className="flex-grow text-2xl font-extralight text-white">#{ monster.order }</h2>
@@ -31,7 +31,7 @@ function Card(props) {
                         {
                             types.map((type) => {
                                 return(
-                                    <div className="px-2 py-1 rounded-md bg-white">
+                                    <div className="px-2 py-1 font-extralight rounded-lg border border-white text-white">
                                         {type.type.name}
                                     </div>
                                 )
@@ -39,8 +39,8 @@ function Card(props) {
                         }
                     </div>
                 </div>
-                <div className="flex">
-                    <img className="flex-end" src={ sprites.front_default } alt={ name }></img>
+                <div className="flex flex-row-reverse">
+                    <img className="flex-end w-1/2" src={ sprites.front_default } alt={ name }></img>
                 </div>
             </div>
         </div>
